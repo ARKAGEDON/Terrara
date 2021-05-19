@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 2042663424397969842}
   - component: {fileID: 2042663424397969843}
   - component: {fileID: 2042663424397969836}
+  - component: {fileID: 1659033740}
   m_Layer: 8
   m_Name: Blade
   m_TagString: Untagged
@@ -293,6 +294,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1659033740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042663424397969838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a591d44612b17818bba496d47261e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lSaber: {fileID: 346704722}
+  texte: {fileID: 0}
+  isAttacking: 0
 --- !u!1 &3606413506940935190
 GameObject:
   m_ObjectHideFlags: 0
