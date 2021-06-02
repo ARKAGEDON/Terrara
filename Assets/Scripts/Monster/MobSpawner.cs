@@ -109,7 +109,7 @@ public class MobSpawner : MonoBehaviour
     {
         for (var i = 0; i < _randomEntityAmount; i++)
         {
-            Instantiate(EntityPrefab, spawnPoints[_spawnerId].position, Quaternion.identity);
+            Instantiate(EntityPrefab, Random.insideUnitSphere * 5f + spawnPoints[_spawnerId].position, Quaternion.identity);
         }
     }
 }

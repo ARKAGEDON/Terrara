@@ -10,6 +10,7 @@ public class EnemyAI : EnemyInfo
     [SerializeField] GameObject[] players;
     [SerializeField] Transform target;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animator;
     [SerializeField] float chaseRange;
     [SerializeField] float attackRange;
     [SerializeField] float attackCooldown;
@@ -33,14 +34,20 @@ public class EnemyAI : EnemyInfo
             if (distance <= chaseRange)
             {
                 //On vérifie que le joueur est dans la zone d'attaque du joueur et le cooldown passé sinon on avance
-                if (distance <= attackRange && Time.time > nextAttackTime)
+                if (distance <= attackRange)
                 {
-                    //Anim d'attaque 
-                    target.GetComponent<PlayerInfo>().ApplyDamage(Damage);
-                    nextAttackTime = Time.time + attackCooldown; //Mise en place du cooldown
+                    animator.SetFloat ("Speed", agent.velocity.magnitude/agent.speed,.1f,Time.deltaTime);
+                    if (Time.time > nextAttackTime)
+                    {
+                        animator.SetBool("Attack", true);
+                    }
                 }
                 else
-                    agent.SetDestination(target.transform.position);
+                    animator.SetFloat ("Speed", agent.velocity.magnitude/agent.speed,.1f,Time.deltaTime); //Ajout de la vitesse actuel du mob dans l'animator pour les animations de déplacement
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Smash")) //Vérification si le joueur n'est pas en train d'attaquer pour éviter l'effet de slide
+                    {
+                        agent.SetDestination(target.transform.position);
+                    }
             }
         }
     }
@@ -77,6 +84,15 @@ public class EnemyAI : EnemyInfo
         base.ApplyDamage(_damage);
     }
 
+    /// <summary>
+    /// Fonction appelé par l'animation d'attaque, on applique les dégats au joueur, augmente le cooldown et désactive l'animation
+    /// </summary>
+    public void Attack()
+    {
+        target.GetComponent<PlayerInfo>().ApplyDamage(Damage);
+        nextAttackTime = Time.time + attackCooldown; //Mise en place du cooldown
+        animator.SetBool("Attack", false);
+    }
 
     /// <summary>
     /// Fonction de mort du mob

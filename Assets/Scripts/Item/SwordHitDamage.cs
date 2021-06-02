@@ -6,7 +6,7 @@ using TMPro;
 public class SwordHitDamage : MonoBehaviour
 {
     [SerializeField] LightSaber lSaber; //Référence vers le script light saber pour récupérer les dégats
-    [SerializeField] TextMeshProUGUI texte;
+    //[SerializeField] TextMeshProUGUI texte;
     [SerializeField] bool isAttacking = false;
     int nbCoup;
 
@@ -17,8 +17,8 @@ public class SwordHitDamage : MonoBehaviour
             {
                 isAttacking = true;
                 other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
-                nbCoup ++;
-                texte.text = "Coups: " + nbCoup.ToString() + " Dégats: " + lSaber.Damage.ToString();
+                /*nbCoup ++;
+                texte.text = "Coups: " + nbCoup.ToString() + " Dégats: " + lSaber.Damage.ToString();*/
             }
         }
     }
@@ -29,8 +29,8 @@ public class SwordHitDamage : MonoBehaviour
             {
                 isAttacking = true;
                 other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
-                nbCoup ++;
-                texte.text = "Coups: " + nbCoup.ToString() + " Dégats: " + lSaber.Damage.ToString();
+                /*nbCoup ++;
+                texte.text = "Coups: " + nbCoup.ToString() + " Dégats: " + lSaber.Damage.ToString();*/
             }
         }
     }
