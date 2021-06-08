@@ -21,3 +21,16 @@ Licence
 ---------------
 
 Ce projet est sous la licence 
+
+Crédits
+-------------
+Effet de son du [sabre laser](https://freesound.org/people/arnaljl/sounds/67878/) par arnaljl
+Effet de son [allumer](https://freesound.org/people/joe93barlow/sounds/78674/)/[éteindre](https://freesound.org/people/joe93barlow/sounds/78673/) sabre laser par joe93barlow
+
+[Musique du tuto](https://groovelake.com/music/experimental-test-subject-kevin-macleod/) par Kevin MacLeod
+
+[Robot du tuto](https://sketchfab.com/3d-models/robot-free-to-use-97b40d794da246e1b952f881cb184f15) par rodrigoscar
+
+[Valem](https://www.youtube.com/channel/UCPJlesN59MzHPPCp0Lg8sLw) pour ses tuto sur la vr
+
+Et enfin la communauté pour son soutiens :)
