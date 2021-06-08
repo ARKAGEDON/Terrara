@@ -20,7 +20,9 @@ Vous pouvez aider au développement du jeu, pour cela vous pouvez rejoindre le [
 Licence
 ---------------
 
-Ce projet est sous la licence 
+Ce projet est sous la licence Creative Commons Attribution-NonCommercial 4.0 International. Pour voir une copie de cette licence, visiter http://creativecommons.org/licenses/by-nc/4.0/ ou envoyer une lettre à Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Cette licence vous permet de faire tout ce que vous voulez avec ce programme mais uniquement pour des projets non commerciaux et à conditions de créditer la source.
 
 Crédits
 -------------
