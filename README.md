@@ -25,6 +25,7 @@ Ce projet est sous la licence
 Crédits
 -------------
 Effet de son du [sabre laser](https://freesound.org/people/arnaljl/sounds/67878/) par arnaljl
+
 Effet de son [allumer](https://freesound.org/people/joe93barlow/sounds/78674/)/[éteindre](https://freesound.org/people/joe93barlow/sounds/78673/) sabre laser par joe93barlow
 
 [Musique du tuto](https://groovelake.com/music/experimental-test-subject-kevin-macleod/) par Kevin MacLeod
