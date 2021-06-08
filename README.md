@@ -36,4 +36,4 @@ Effet de son [allumer](https://freesound.org/people/joe93barlow/sounds/78674/)/[
 
 [Valem](https://www.youtube.com/channel/UCPJlesN59MzHPPCp0Lg8sLw) pour ses tuto sur la vr
 
-Et enfin la communauté pour son soutiens :)
+Et enfin la communauté pour son soutien :)
