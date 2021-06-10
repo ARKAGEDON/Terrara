@@ -141,4 +141,12 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(_scene);
     }
+
+    /// <summary>
+    /// Fonction pour reset les playerPrefs
+    /// </summary>
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lSaber: {fileID: 346704722}
+  saberRb: {fileID: 2042663423150148543}
   isAttacking: 0
 --- !u!1 &3606413506940935190
 GameObject:

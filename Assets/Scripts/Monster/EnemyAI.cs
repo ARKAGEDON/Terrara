@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
+using TMPro;
 
 public class EnemyAI : EnemyInfo
 {
     [Header("IA du mob")]
-    [SerializeField] GameObject[] players;
-    [SerializeField] Transform target;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator animator;
-    [SerializeField] float chaseRange;
-    [SerializeField] float attackRange;
-    [SerializeField] float attackCooldown;
+    [SerializeField] private GameObject[] players;
+    [SerializeField] private Transform target;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float chaseRange;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackCooldown;
+
+    [Header("UI du mob")]
+    [SerializeField] private TextMeshProUGUI damageText;
 
     float nextAttackTime;
     bool isFocusing;
@@ -81,6 +84,8 @@ public class EnemyAI : EnemyInfo
     public override void ApplyDamage(float _damage)
     {
         target = CheckNearest();
+        IEnumerator coroutine = ShowDamage(_damage);
+        StartCoroutine(coroutine);
         base.ApplyDamage(_damage);
     }
 
@@ -116,4 +121,15 @@ public class EnemyAI : EnemyInfo
         Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, attackRange);
 	}
+
+    /// <summary>
+    /// Coroutine pour afficher les dégats pris par le mob
+    /// </summary>
+    /// <param name="_damage">Dégats pris par le monstre à affiché</param>
+    public IEnumerator ShowDamage(float _damage)
+    {
+        damageText.text = "-" + _damage.ToString();
+        yield return new WaitForSeconds(0.5f);
+        damageText.text = "";
+    }
 }
