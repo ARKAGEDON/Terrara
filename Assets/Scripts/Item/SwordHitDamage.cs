@@ -5,10 +5,12 @@ using TMPro;
 
 public class SwordHitDamage : MonoBehaviour
 {
-    [SerializeField] LightSaber lSaber; //Référence vers le script light saber pour récupérer les dégats
-    [SerializeField] Rigidbody saberRb; //Référence vers le rigidbody de l'épée pour vérifie la vitesse
-    [SerializeField] bool isAttacking = false; //Bool pour éviter de mettre des dégats en continue si l'épée est dans le monstre
-    int nbCoup;
+    [Tooltip("Référence vers le script light saber pour récupérer les dégats")]
+    [SerializeField] LightSaber lSaber;
+    [Tooltip("Référence vers le rigidbody de l'épée pour vérifie la vitesse")]
+    [SerializeField] Rigidbody saberRb;
+    [Tooltip("Bool pour éviter de mettre des dégats en continue si l'épée est dans le monstre")]
+    [SerializeField] bool isAttacking = false;
 
     private void OnTriggerEnter(Collider other) {
         if (!isAttacking && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieure à 3 et qu'on peut attaquer

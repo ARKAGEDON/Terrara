@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
-    [Header("Stats du mob")]
+    [Header("Stats du joueur")]
+    [Tooltip("Vie maximale du joueur")]
     [SerializeField] private float maxHp;
+    [Tooltip("Vie actuelle du joueur")]
     [SerializeField] private float currentHp;
+    [Tooltip("Bool pour vérifier si le joueur est mort ou non")]
     [SerializeField] private bool isDead;
 
     [Header("UI")]
+    [Tooltip("Référence vers l'image de barre de vie du joueur")]
     [SerializeField] private Image hpImage;
+    [Tooltip("Référence vers le texte de la barre de vie du joueur")]
     [SerializeField] private TextMeshProUGUI hpText;
 
     public bool IsDead { get => isDead; }

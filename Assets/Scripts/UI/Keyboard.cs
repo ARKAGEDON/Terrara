@@ -5,15 +5,17 @@ using TMPro;
 
 public class Keyboard : MonoBehaviour
 {
-    [SerializeField] private GameObject UppercaseKeys; //Référence vers les touches majuscules
-    [SerializeField] private GameObject LowercaseKeys; //Référence vers les touches minuscules
+    [Tooltip("Référence vers le GameObject contenant les touches majuscule")]
+    [SerializeField] private GameObject UppercaseKeys;
+    [Tooltip("Référence vers le GameObject contenant les touches minuscules")]
+    [SerializeField] private GameObject LowercaseKeys;     
     private GameObject inputFieldTexte; //Référence vers le texte de l'inputfield
     private GameObject inputFieldPlaceHolder; //Référence vers le placeholder de l'inputfield
     private string text; //Référence vers le texte de l'inputfield text
     private TextMeshProUGUI displayText;
-    public Color displayTextColor = Color.black;
+    private Color displayTextColor = Color.black;
 
-    public Color caretColor = Color.gray;
+    private Color caretColor = Color.gray;
 
     private void Start() {
         LowercaseKeys.SetActive(true);

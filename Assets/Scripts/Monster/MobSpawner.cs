@@ -5,16 +5,24 @@ using UnityEngine;
 public class MobSpawner : MonoBehaviour
 {
     [Header("Spawner Info")]
-    [SerializeField] private Transform[] spawnPoints; //Liste des points de spawn pour les mobs
-    [SerializeField] private bool randomSpawner = false; //Bool pour vérifier si le joueur veut un nombre aléa de spawner ou non
-    [SerializeField] private int minSpawner, maxSpawner; //Variable pour savoir le nombre min et max de spawner aléatoire
-    [SerializeField] private float cooldownBetweenSpawn = 2f; //Cooldown entre chaque vague de spawn
+    [Tooltip("Liste des points de spawn pour les mobs")]
+    [SerializeField] private Transform[] spawnPoints;
+    [Tooltip("Bool pour vérifier si il y a un nombre aléa de spawner ou non")]
+    [SerializeField] private bool randomSpawner = false;
+    [Tooltip("Variable pour savoir le nombre min et max de spawner aléatoire")]
+    [SerializeField] private int minSpawner, maxSpawner;
+    [Tooltip("Temps d'attente entre chaque vague de spawn")]
+    [SerializeField] private float cooldownBetweenSpawn = 2f;
 
     [Header("Entity Info")]
-    [SerializeField] private GameObject EntityPrefab; //Prefab de l'entité à spawn
-    [SerializeField] private bool randomAmount = false; //Bool à activer si on veut un nombre aléatoire d'entité (par défaut 1 par spawner)
-    [SerializeField] private bool randomAmoutPerSpawner = false; //Bool à activer si on veut un nombre aléatoire d'entité par spawner (par le même nombre par spawner)
-    [SerializeField] private int minEntity, maxEntity; //Variable pour savoir le min et max d'entité à spawn
+    [Tooltip("Prefab de l'entité à spawn")]
+    [SerializeField] private GameObject EntityPrefab;
+    [Tooltip("Bool à activer si on veut un nombre aléatoire d'entité (par défaut 1 par spawner)")]
+    [SerializeField] private bool randomAmount = false;
+    [Tooltip("Bool à activer si on veut un nombre aléatoire d'entité par spawner (par le même nombre par spawner)")]
+    [SerializeField] private bool randomAmoutPerSpawner = false; 
+    [Tooltip("Variable pour savoir le min et max d'entité à spawn")]
+    [SerializeField] private int minEntity, maxEntity;
 
     float nextSpawnTime;
 

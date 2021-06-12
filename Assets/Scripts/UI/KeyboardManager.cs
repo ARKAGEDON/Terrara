@@ -5,7 +5,8 @@ using TMPro;
 
 public class KeyboardManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Keyboard; //Référence vers l'ui de clavier
+    [Tooltip("Référence vers l'ui de clavier")]
+    [SerializeField] private GameObject Keyboard;
 
     private void Start() {
         Keyboard.SetActive(false);

@@ -8,16 +8,26 @@ using UnityEngine.UI;
 public class EnemyAI : EnemyInfo
 {
     [Header("IA du mob")]
+
+    [Tooltip("Liste de joueurs trouvés par le monstre")]
     [SerializeField] private GameObject[] players;
+    [Tooltip("Transform de la cible de le monstre")]
     [SerializeField] private Transform target;
+    [Tooltip("Référence du NavMeshAgent de le monstre")]
     [SerializeField] private NavMeshAgent agent;
+    [Tooltip("Référence de l'Animator de le monstre")]
     [SerializeField] private Animator animator;
+    [Tooltip("Distance dans la quelle le monstre suit le joueur")]
     [SerializeField] private float chaseRange;
+    [Tooltip("Distance dans la quelle le monstre peut attaquer")]
     [SerializeField] private float attackRange;
+    [Tooltip("Temps d'attente entre chaque attaque")]
     [SerializeField] private float attackCooldown;
 
     [Header("UI du mob")]
+    [Tooltip("Référence vers le texte qui affiche les dégats subis")]
     [SerializeField] private TextMeshProUGUI damageText;
+    [Tooltip("Référence l'image de la barre de vie")]
     [SerializeField] private Image healthBar;
 
     float nextAttackTime;
@@ -37,7 +47,7 @@ public class EnemyAI : EnemyInfo
                 target = CheckNearest();
             }
 
-            float distance = Vector3.Distance(gameObject.transform.position, target.transform.position);
+            float distance = Vector3.Distance(gameObject.transform.position, target.transform.position); //Calcul de la distance entre la cible et le monstre
             if (distance <= chaseRange)
             {
                 //On vérifie que le joueur est dans la zone d'attaque du joueur et le cooldown passé sinon on avance

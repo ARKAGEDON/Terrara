@@ -5,10 +5,14 @@ using UnityEngine;
 public class LightSaber : MonoBehaviour
 {
     [Header("Info du sabre laser")]
-    [SerializeField] private float damage; //Variable des dégats du sabre
-    [SerializeField] private GameObject blade; //Référence vers la lame du sabre 
-    [SerializeField] private AudioSource audioSource; //Référence vers la source audio
-    [SerializeField] private AudioClip[] clips; //Liste des différents clip de son de l'arme (ordre: 0 Démarrage du sabre, 1 Son vibration du sabre, 2 son stop du sabre)
+    [Tooltip("Dégats qu'inflige le sabre")]
+    [SerializeField] private float damage; 
+    [Tooltip("Référence vers le GameObject de la lame")]
+    [SerializeField] private GameObject blade;
+    [Tooltip("Référence vers la source audio du sabre")]
+    [SerializeField] private AudioSource audioSource; 
+    [Tooltip("Liste des différents clip de son de l'arme (ordre: 0 Démarrage du sabre, 1 Son vibration du sabre, 2 son stop du sabre)")]
+    [SerializeField] private AudioClip[] clips;
     public float Damage {get => damage;}
     bool humming = false; //Bool pour jouer le son hum
 

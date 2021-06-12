@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TutorialEnd : MonoBehaviour
 {
-    public EnemyAI enemy; //Référence vers le mob
-    public GameObject EndingCanvas; //Référence vers le canvas de fin pour sortir du niveau
+    [Tooltip("Référence vers le mob du tuto")]
+    public EnemyAI enemy;
+    [Tooltip("Référence vers le canvas de fin pour sortir du niveau")]
+    public GameObject EndingCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class TutorialEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy.IsDead == true)
+        if (enemy.IsDead == true) //Vérification de la mort ou non de l'ennemi, si oui on affiche le canvas de fin
         {
             EndingCanvas.SetActive(true);
         }
