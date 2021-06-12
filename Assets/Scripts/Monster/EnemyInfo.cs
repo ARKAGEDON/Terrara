@@ -12,6 +12,8 @@ public class EnemyInfo : MonoBehaviour
 
     public bool IsDead { get => isDead; }
     public float Damage { get => damage; }
+    public float MaxHp { get => maxHp; }
+    public float CurrentHp { get => currentHp; }
 
     private void Start() {
         currentHp = maxHp;

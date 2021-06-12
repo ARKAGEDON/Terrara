@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.UI;
 
 public class EnemyAI : EnemyInfo
 {
@@ -17,12 +18,15 @@ public class EnemyAI : EnemyInfo
 
     [Header("UI du mob")]
     [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private Image healthBar;
 
     float nextAttackTime;
     bool isFocusing;
 
     private void Start() {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        float percentageHP = ((CurrentHp * 100) / MaxHp) / 100;
+        healthBar.fillAmount = percentageHP;
     }
 
     private void Update() {
@@ -131,5 +135,7 @@ public class EnemyAI : EnemyInfo
         damageText.text = "-" + _damage.ToString();
         yield return new WaitForSeconds(0.5f);
         damageText.text = "";
+        float percentageHP = ((CurrentHp * 100) / MaxHp) / 100;
+        healthBar.fillAmount = percentageHP;
     }
 }
