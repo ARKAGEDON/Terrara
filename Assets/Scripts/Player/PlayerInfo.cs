@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -135,5 +136,13 @@ public class PlayerInfo : MonoBehaviour
     {
         DisableComponents();
         loosePanel.SetActive(true);
+    }
+
+    /// <summary>
+    /// Fonction pour retourner au menu principal
+    /// </summary>
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

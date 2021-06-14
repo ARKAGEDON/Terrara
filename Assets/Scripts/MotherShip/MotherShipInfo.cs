@@ -19,10 +19,10 @@ public class MotherShipInfo : MonoBehaviour
 
     [Header("UI")]
 
-    [Tooltip("Référence vers l'image de barre de vie du joueur")]
+    [Tooltip("Référence vers l'image de barre de vie du vaisseau")]
     [SerializeField] private Image hpImage;
 
-    [Tooltip("Référence vers le texte de la barre de vie du joueur")]
+    [Tooltip("Référence vers le texte de la barre de vie du vaisseau")]
     [SerializeField] private TextMeshProUGUI hpText;
 
     public bool IsDead { get => isDead; }
