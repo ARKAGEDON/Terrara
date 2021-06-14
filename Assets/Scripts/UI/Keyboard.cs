@@ -7,12 +7,18 @@ public class Keyboard : MonoBehaviour
 {
     [Tooltip("Référence vers le GameObject contenant les touches majuscule")]
     [SerializeField] private GameObject UppercaseKeys;
+
     [Tooltip("Référence vers le GameObject contenant les touches minuscules")]
-    [SerializeField] private GameObject LowercaseKeys;     
+    [SerializeField] private GameObject LowercaseKeys;  
+
     private GameObject inputFieldTexte; //Référence vers le texte de l'inputfield
+
     private GameObject inputFieldPlaceHolder; //Référence vers le placeholder de l'inputfield
+
     private string text; //Référence vers le texte de l'inputfield text
+
     private TextMeshProUGUI displayText;
+    
     private Color displayTextColor = Color.black;
 
     private Color caretColor = Color.gray;

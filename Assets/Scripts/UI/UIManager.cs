@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [Header("Data")]
+    
     [Tooltip("Référence vers le playerData contenant les info du joueur")]
     [SerializeField] PlayerData playerData;
     bool isRegistered; //bool pour vérifier si le joueur est déjà enregistré ou non
@@ -17,12 +18,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] Panels;
 
     [Header("PlayerInfo UI")]
+
     [Tooltip("Référence vers le texte de niveau du joueur")]
     [SerializeField] private TextMeshProUGUI playerLevelText;
+
     [Tooltip("Référence vers le texte d'exp du joueur")]
     [SerializeField] private TextMeshProUGUI playerXpText;
+
     [Tooltip("Référence vers le texte de nom du joueur")]
     [SerializeField] private TextMeshProUGUI playerNameText;
+
     [Tooltip("Référence vers le texte de l'inputfield pour le nom du joueur au login")]
     [SerializeField] private TextMeshProUGUI playerinputField;
 

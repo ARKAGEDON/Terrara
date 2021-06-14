@@ -8,10 +8,13 @@ public class PlayerData : MonoBehaviour
 {
     [Tooltip("Niveau du joueur sauvegardé dans les playerprefs")]
     [SerializeField] private int playerLevel;
+
     [Tooltip("Nom du joueur sauvegardé dans les playerprefs")]
     [SerializeField] private string playerName;
+
     [Tooltip("Exp du joueur sauvegardé dans les playerprefs")]
     [SerializeField] private int currentXp;
+    
     [Tooltip("Exp Max avant changement de niveau du joueur sauvegardé dans les playerprefs")]
     [SerializeField] private int maxXp;
 

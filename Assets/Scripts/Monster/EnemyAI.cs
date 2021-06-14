@@ -11,22 +11,30 @@ public class EnemyAI : EnemyInfo
 
     [Tooltip("Liste de joueurs trouvés par le monstre")]
     [SerializeField] private GameObject[] players;
+
     [Tooltip("Transform de la cible de le monstre")]
     [SerializeField] private Transform target;
+
     [Tooltip("Référence du NavMeshAgent de le monstre")]
     [SerializeField] private NavMeshAgent agent;
+
     [Tooltip("Référence de l'Animator de le monstre")]
     [SerializeField] private Animator animator;
+
     [Tooltip("Distance dans la quelle le monstre suit le joueur")]
-    [SerializeField] private float chaseRange;
+    [SerializeField] private float chaseRange = 5f;
+
     [Tooltip("Distance dans la quelle le monstre peut attaquer")]
-    [SerializeField] private float attackRange;
+    [SerializeField] private float attackRange = 2f;
+
     [Tooltip("Temps d'attente entre chaque attaque")]
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackCooldown = 2f;
 
     [Header("UI du mob")]
+
     [Tooltip("Référence vers le texte qui affiche les dégats subis")]
     [SerializeField] private TextMeshProUGUI damageText;
+    
     [Tooltip("Référence l'image de la barre de vie")]
     [SerializeField] private Image healthBar;
 

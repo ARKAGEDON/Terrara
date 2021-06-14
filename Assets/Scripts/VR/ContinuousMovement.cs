@@ -8,12 +8,16 @@ public class ContinuousMovement : MonoBehaviour
 {
     [Tooltip("Vitesse du joueur")]
     public float speed = 1f;
+
     [Tooltip("Controller qui agit le déplacement")]
     public XRNode inputSource;
+
     [Tooltip("Gravité exercé du joueur")]
     public float gravity = -9.81f;
+
     [Tooltip("Layer du sol pour gérer les collisions et le saut du joueur")]
     public LayerMask groundLayer;
+    
     [Tooltip("Ajout de hauteur au joueur")]
     public float additionalHeight = 0.2f;
 

@@ -7,10 +7,13 @@ public class HandPresence : MonoBehaviour
 {
     [Tooltip("Bool pour savoir si on doit afficher les mains ou les controllers")]
     public bool showController = false;
+
     [Tooltip("Référence vers notre casque pour savoir le model et donc quelle controller affiché")]
     public InputDeviceCharacteristics controllerCharacteristics;
+
     [Tooltip("Liste des models de controllers à affiché")]
     public List<GameObject> controllerPrefabs;
+    
     [Tooltip("Référence vers le models des mains")]
     public GameObject handModelPrefab;
 

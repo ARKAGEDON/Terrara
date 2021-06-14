@@ -6,7 +6,7 @@ public class LightSaber : MonoBehaviour
 {
     [Header("Info du sabre laser")]
     [Tooltip("Dégats qu'inflige le sabre")]
-    [SerializeField] private float damage; 
+    [SerializeField] private float damage = 5f; 
     [Tooltip("Référence vers le GameObject de la lame")]
     [SerializeField] private GameObject blade;
     [Tooltip("Référence vers la source audio du sabre")]

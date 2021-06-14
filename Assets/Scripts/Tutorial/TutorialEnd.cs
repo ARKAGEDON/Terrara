@@ -7,6 +7,7 @@ public class TutorialEnd : MonoBehaviour
 {
     [Tooltip("Référence vers le mob du tuto")]
     public EnemyAI enemy;
+    
     [Tooltip("Référence vers le canvas de fin pour sortir du niveau")]
     public GameObject EndingCanvas;
 

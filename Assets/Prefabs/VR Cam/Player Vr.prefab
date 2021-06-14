@@ -1737,6 +1737,7 @@ MonoBehaviour:
   maxHp: 25
   currentHp: 0
   isDead: 0
+  componentsToDisable: []
   hpImage: {fileID: 4096123047180600744}
   hpText: {fileID: 1149718771021034}
 --- !u!1 &5790437808257857187

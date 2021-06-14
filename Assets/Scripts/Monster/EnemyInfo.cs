@@ -5,14 +5,18 @@ using UnityEngine;
 public class EnemyInfo : MonoBehaviour
 {
     [Header("Stats du mob")]
+
     [Tooltip("Vie maximum du monstre")]
-    [SerializeField] private float maxHp;
+    [SerializeField] private float maxHp = 25f;
+
     [Tooltip("Vie actuelle du monstre")]
-    [SerializeField] private float currentHp;
+    [SerializeField] private float currentHp = 25f;
+
     [Tooltip("Dégats du monstre")]
-    [SerializeField] private float damage;
+    [SerializeField] private float damage = 2f;
+    
     [Tooltip("Bool pour vérifier si le monstre est mort ou non")]
-    [SerializeField] private bool isDead;
+    [SerializeField] private bool isDead = false;
 
     public bool IsDead { get => isDead; }
     public float Damage { get => damage; }
