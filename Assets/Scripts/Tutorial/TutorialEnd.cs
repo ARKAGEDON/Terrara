@@ -6,15 +6,22 @@ using UnityEngine.SceneManagement;
 public class TutorialEnd : MonoBehaviour
 {
     [Tooltip("Référence vers le mob du tuto")]
-    public EnemyAI enemy;
+    [SerializeField] private EnemyAI enemy;
     
-    [Tooltip("Référence vers le canvas de fin pour sortir du niveau")]
-    public GameObject EndingCanvas;
+    [Tooltip("Référence vers le mur entre le mob et les vaisseaux mères")]
+    [SerializeField] private GameObject[] Walls;
+
+    [Tooltip("Référence vers le vaisseau mère ennemis")]
+    [SerializeField] private GameObject EMotherShip;
 
     // Start is called before the first frame update
     void Start()
     {
-        EndingCanvas.SetActive(false);
+        foreach (var wall in Walls)
+        {
+            wall.SetActive(true);
+        }
+        EMotherShip.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +29,11 @@ public class TutorialEnd : MonoBehaviour
     {
         if (enemy.IsDead == true) //Vérification de la mort ou non de l'ennemi, si oui on affiche le canvas de fin
         {
-            EndingCanvas.SetActive(true);
+            foreach (var wall in Walls)
+            {
+                wall.SetActive(false);
+            }
+            EMotherShip.SetActive(true);
         }
     }
 
