@@ -10,7 +10,11 @@ public class PlayerMotherShip : MotherShipInfo
     [SerializeField] private int playerLifeAmount = 3;
 
     [Tooltip("Référence vers le joueur")]
-    [SerializeField] private PlayerInfo player;
+    [SerializeField] private GameObject player;
+    private PlayerInfo pInfo; //Référence vers le playerinfo du joueur
+
+    [Tooltip("Référence vers le point de respawn du joueur")]
+    [SerializeField] private Transform respawnPoint;
 
     [Tooltip("Temps d'attente entre la mort et le respawn du joueur")]
     [SerializeField] private float RespawnCooldown = 5f;
@@ -18,13 +22,14 @@ public class PlayerMotherShip : MotherShipInfo
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInfo>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        pInfo = player.GetComponent<PlayerInfo>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.IsDead && playerLifeAmount > 0)
+        if (pInfo.IsDead && playerLifeAmount > 0)
         {
             StartCoroutine("RespawnPlayer");
         }
@@ -45,6 +50,7 @@ public class PlayerMotherShip : MotherShipInfo
     private IEnumerator RespawnPlayer()
     {
         yield return new WaitForSeconds(RespawnCooldown);
-        player.Respawn();
+        player.transform.position = respawnPoint.position;
+        pInfo.Respawn();
     }
 }

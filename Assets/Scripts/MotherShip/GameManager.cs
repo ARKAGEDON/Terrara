@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Référence vers le vaisseau mère du joueur")]
     [SerializeField] private PlayerMotherShip PMotherShip;
 
+    [Tooltip("Référence vers le playerData")]
+    [SerializeField] private PlayerData playerData;
+
     private PlayerInfo playerInfo;
 
     // Start is called before the first frame update
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
         playerInfo = player.GetComponent<PlayerInfo>();
         EMotherShip = GameObject.FindGameObjectWithTag("EnemyMotherShip").GetComponent<EnemyMotherShip>();
         PMotherShip = GameObject.FindGameObjectWithTag("PlayerMotherShip").GetComponent<PlayerMotherShip>();
+        playerData = GameObject.FindGameObjectWithTag("DataManager").GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
         if (EMotherShip.IsDead) //On vérifie que le vaisseau mère est bien mort puis si les boss le sont aussi, si oui alors gagné
         {
             playerInfo.Win();
+            playerData.AddXp(500);
         }
 
         if (PMotherShip.IsDead && playerInfo.IsDead) //On vérifie si le joueur et le vaisseau mère sont mort, si oui alors perdu

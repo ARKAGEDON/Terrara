@@ -86,16 +86,33 @@ public class EnemyAI : EnemyInfo
         float distance = Mathf.Infinity;
         Transform nearestTarget = null; //Joueur le plus proche
         players = GameObject.FindGameObjectsWithTag("Player");
+        //Ajout du vaisseau ennemis
+        GameObject playerMotherShip = GameObject.FindGameObjectWithTag("PlayerMotherShip");
 
         foreach (var player in players)
         {
-            float targetDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-            if (targetDistance < distance)
+            if (!player.GetComponent<PlayerInfo>().DontChase)
             {
-                distance = targetDistance;
-                nearestTarget = player.transform;
+                float targetDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+                if (targetDistance < distance)
+                {
+                    distance = targetDistance;
+                    nearestTarget = player.transform;
+                }
             }
         }
+
+        if (!playerMotherShip.GetComponent<PlayerMotherShip>().IsDead)
+        {
+            //On vérifie si le vaisseau mère est plus proche que le joueur ou non, si oui on attaque le vaisseau
+            float motherShipDistance = Vector3.Distance(gameObject.transform.position, playerMotherShip.transform.position);
+            if (motherShipDistance < distance)
+            {
+                distance = motherShipDistance;
+                nearestTarget = playerMotherShip.transform;
+            }
+        }
+
         return nearestTarget;
     }
 

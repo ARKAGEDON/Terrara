@@ -20,6 +20,11 @@ public class SwordHitDamage : MonoBehaviour
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
                 other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
             }
+            else if (other.CompareTag("EnemyMotherShip")) //On vérifie qu'on a bien touché un ennemis
+            {
+                isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
+                other.GetComponent<EnemyMotherShip>().ApplyDamage(lSaber.Damage);
+            }
         }
     }
     private void OnTriggerStay(Collider other) {
@@ -29,6 +34,11 @@ public class SwordHitDamage : MonoBehaviour
             {
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
                 other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
+            }
+            else if (other.CompareTag("EnemyMotherShip")) //On vérifie qu'on a bien touché un ennemis
+            {
+                isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
+                other.GetComponent<EnemyMotherShip>().ApplyDamage(lSaber.Damage);
             }
         }
     }

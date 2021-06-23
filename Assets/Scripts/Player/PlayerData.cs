@@ -31,11 +31,30 @@ public class PlayerData : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Level"))
             playerLevel = PlayerPrefs.GetInt("Level");
-            
+        if (playerLevel == 0) //Si aucun niveau n'est sauvegardé alors on met le niveau à défaut et l'enregistre dans les data du joueur
+        {
+            playerLevel = 1;
+            PlayerPrefs.SetInt("Level", playerLevel);
+            PlayerPrefs.Save();       
+        }
+
         if (PlayerPrefs.HasKey("CurrentXp"))
             currentXp = PlayerPrefs.GetInt("CurrentXp");
+
         if (PlayerPrefs.HasKey("MaxXp"))
             maxXp = PlayerPrefs.GetInt("MaxXp");
+        if (maxXp == 0 || playerLevel == 1) //Si aucun xp max n'est trouvé alors on met l'exp max à défaut et l'enregistre dans les data du joueur
+        {
+            maxXp = 100;
+            PlayerPrefs.SetInt("MaxXp", maxXp);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            maxXp = 100 * 2^(playerLevel-2);
+            PlayerPrefs.SetInt("MaxXp", maxXp);
+            PlayerPrefs.Save();
+        }
 
         if (PlayerPrefs.HasKey("Name"))
             playerName = PlayerPrefs.GetString("Name");
@@ -62,6 +81,7 @@ public class PlayerData : MonoBehaviour
         if (currentXp >= maxXp) //Si de l'exp en trop on monte de niveau
         {
             AddLevel(1);
+            maxXp = 100 * 2^(playerLevel-2);
             AddXp(currentXp-maxXp);
             return;
         }
