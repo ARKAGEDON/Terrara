@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 103118132}
   - component: {fileID: 103118134}
   - component: {fileID: 103118133}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 412194130}
   - component: {fileID: 412194129}
   - component: {fileID: 412194128}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Menu Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 439796012}
   - component: {fileID: 439796014}
   - component: {fileID: 439796013}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 654277983}
   - component: {fileID: 654277982}
   - component: {fileID: 654277981}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Menu Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 7672814515932980800}
   - component: {fileID: 7290212902986799067}
   - component: {fileID: 2537180197345045170}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: DeathPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 2252049729177345761}
   - component: {fileID: 9146213662705571527}
   - component: {fileID: 1287936709}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 3129628316150097332}
   - component: {fileID: 298996064629607373}
   - component: {fileID: 8299736542198780285}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: WinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ GameObject:
   - component: {fileID: 2614836957613573078}
   - component: {fileID: 3298636807586028902}
   - component: {fileID: 9056994796058608852}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: LooseTextText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,7 +1486,7 @@ GameObject:
   - component: {fileID: 8240742093815466522}
   - component: {fileID: 8578194404870671397}
   - component: {fileID: 4160244299669380881}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: WinPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,10 +2120,10 @@ MonoBehaviour:
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
-  m_RotateAnchorLeft: 16
-  m_RotateAnchorRight: 17
-  m_MoveObjectIn: 14
-  m_MoveObjectOut: 15
+  m_RotateAnchorLeft: 0
+  m_RotateAnchorRight: 0
+  m_MoveObjectIn: 0
+  m_MoveObjectOut: 0
   m_PoseProvider: {fileID: 0}
 --- !u!114 &5790437807533917027
 MonoBehaviour:
@@ -3122,7 +3122,7 @@ GameObject:
   - component: {fileID: 612075358261055820}
   - component: {fileID: 5084811642340263990}
   - component: {fileID: 8597022920324369560}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3255,13 +3255,13 @@ GameObject:
   - component: {fileID: 4471179302077264615}
   - component: {fileID: 4702880574983074837}
   - component: {fileID: 1452480874778395648}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: LoosePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4471179302077264615
 RectTransform:
   m_ObjectHideFlags: 0

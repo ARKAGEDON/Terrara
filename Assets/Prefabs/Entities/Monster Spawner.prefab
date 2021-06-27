@@ -114,7 +114,7 @@ MonoBehaviour:
   minSpawner: 0
   maxSpawner: 3
   cooldownBetweenSpawn: 2
-  EntityPrefab: {fileID: 139419613022990046, guid: 1c270460ec75423988edf46d196a84fe,
+  EntityPrefab: {fileID: 1264877655326452170, guid: 2a2bd1f1e5c0f66afb1a39dcdc93d082,
     type: 3}
   randomAmount: 0
   randomAmoutPerSpawner: 1

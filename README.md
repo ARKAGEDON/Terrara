@@ -32,7 +32,13 @@ Effet de son [allumer](https://freesound.org/people/joe93barlow/sounds/78674/)/[
 
 [Musique du tuto](https://groovelake.com/music/experimental-test-subject-kevin-macleod/) par Kevin MacLeod
 
-[Robot du tuto](https://sketchfab.com/3d-models/robot-free-to-use-97b40d794da246e1b952f881cb184f15) par rodrigoscar
+[Robot du tuto](https://sketchfab.com/3d-models/robot-779b04685be641d0b803135f6a573138) par boriscargo
+
+[Vaisseau mère ennemi](https://sketchfab.com/3d-models/ring-ship-b5020dcb894e4e4194232ec3c83cc834) par Lite
+
+[Epée Laser](https://sketchfab.com/3d-models/beatsaber-custom-saber-athenas-blade-blps-6deabdd6f25047b08c9248b8878610c6) par JonParrish
+
+[Effet de contour shader](https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488) par Chris Nolet
 
 [Valem](https://www.youtube.com/channel/UCPJlesN59MzHPPCp0Lg8sLw) pour ses tuto sur la vr
 

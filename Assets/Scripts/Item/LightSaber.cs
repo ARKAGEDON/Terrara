@@ -7,8 +7,10 @@ public class LightSaber : MonoBehaviour
     [Header("Info du sabre laser")]
     [Tooltip("Dégats qu'inflige le sabre")]
     [SerializeField] private float damage = 5f; 
-    [Tooltip("Référence vers le GameObject de la lame")]
-    [SerializeField] private GameObject blade;
+    [Tooltip("Référence vers le material de la lame")]
+    [SerializeField] private Renderer blade;
+    [Tooltip("Référence vers les matériaux")]
+    [SerializeField] private Material[] matériaux;
     [Tooltip("Référence vers la source audio du sabre")]
     [SerializeField] private AudioSource audioSource; 
     [Tooltip("Liste des différents clip de son de l'arme (ordre: 0 Démarrage du sabre, 1 Son vibration du sabre, 2 son stop du sabre)")]
@@ -19,11 +21,11 @@ public class LightSaber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blade.SetActive(false);
+        blade.material = matériaux[0];
     }
 
     private void Update() {
-        if (!humming && blade.activeSelf) //Si aucun son est joué et que le sabre est ouvert alors on joue le son de vibration du sabre
+        if (!humming) //Si aucun son est joué et que le sabre est ouvert alors on joue le son de vibration du sabre
         {
             humming = true;
             audioSource.clip = clips[1];
@@ -36,7 +38,7 @@ public class LightSaber : MonoBehaviour
     /// </summary>
     public void ActiveBlade()
     {
-        if (blade.activeSelf)
+        /*if (blade.activeSelf)
         {
             audioSource.Stop(); // on stop le son de humming
             audioSource.PlayOneShot(clips[2]); //On joue le son de stop du sabre
@@ -48,6 +50,6 @@ public class LightSaber : MonoBehaviour
             audioSource.Stop(); //Au cas où un son se joue
             blade.SetActive(true);
             audioSource.PlayOneShot(clips[0]); //On joue le son d'ouverture du sabre
-        }
+        }*/
     }
 }
