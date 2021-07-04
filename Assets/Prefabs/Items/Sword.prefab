@@ -95,9 +95,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7b5041e51fd870d183d94d59dfac479, type: 2}
+  - {fileID: 2100000, guid: 1ff1a1367856394efb8100aae54e46a4, type: 2}
   - {fileID: 2100000, guid: 532157852d164b237949d714c0fd678a, type: 2}
-  - {fileID: 2100000, guid: f7b5041e51fd870d183d94d59dfac479, type: 2}
+  - {fileID: 2100000, guid: 1ff1a1367856394efb8100aae54e46a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,7 +248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  blade: {fileID: 5511182491721234099}
+  blade: {fileID: 6917107356915869223}
+  materials:
+  - {fileID: 2100000, guid: f7b5041e51fd870d183d94d59dfac479, type: 2}
+  - {fileID: 2100000, guid: 1ff1a1367856394efb8100aae54e46a4, type: 2}
   audioSource: {fileID: 1599853727}
   clips:
   - {fileID: 8300000, guid: 5807f6d15139091cb91e208199939476, type: 3}

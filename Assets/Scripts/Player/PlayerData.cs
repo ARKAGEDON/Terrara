@@ -13,16 +13,16 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private string playerName;
 
     [Tooltip("Exp du joueur sauvegardé dans les playerprefs")]
-    [SerializeField] private int currentXp;
+    [SerializeField] private float currentXp;
     
     [Tooltip("Exp Max avant changement de niveau du joueur sauvegardé dans les playerprefs")]
-    [SerializeField] private int maxXp;
+    [SerializeField] private float maxXp;
 
     //Variable public en lecture seul
     public int PlayerLevel { get => playerLevel; }
     public string PlayerName { get => playerName; }
-    public int CurrentXp { get => currentXp; }
-    public int MaxXp { get => maxXp; }
+    public float CurrentXp { get => currentXp; }
+    public float MaxXp { get => maxXp; }
 
     //Fonction pour récupérer le nom et le niveau du joueur stocké dans ses préférences
     private void Awake() 
@@ -39,20 +39,20 @@ public class PlayerData : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey("CurrentXp"))
-            currentXp = PlayerPrefs.GetInt("CurrentXp");
+            currentXp = PlayerPrefs.GetFloat("CurrentXp");
 
         if (PlayerPrefs.HasKey("MaxXp"))
-            maxXp = PlayerPrefs.GetInt("MaxXp");
+            maxXp = PlayerPrefs.GetFloat("MaxXp");
         if (maxXp == 0 || playerLevel == 1) //Si aucun xp max n'est trouvé alors on met l'exp max à défaut et l'enregistre dans les data du joueur
         {
             maxXp = 100;
-            PlayerPrefs.SetInt("MaxXp", maxXp);
+            PlayerPrefs.SetFloat("MaxXp", maxXp);
             PlayerPrefs.Save();
         }
         else
         {
-            maxXp = 100 * 2^(playerLevel-2);
-            PlayerPrefs.SetInt("MaxXp", maxXp);
+            maxXp = 100 * Mathf.Pow(2, playerLevel-2);
+            PlayerPrefs.SetFloat("MaxXp", maxXp);
             PlayerPrefs.Save();
         }
 
@@ -80,13 +80,19 @@ public class PlayerData : MonoBehaviour
         currentXp += _xp;
         if (currentXp >= maxXp) //Si de l'exp en trop on monte de niveau
         {
-            AddLevel(1);
-            maxXp = 100 * 2^(playerLevel-2);
-            AddXp(currentXp-maxXp);
-            return;
+            while (currentXp >= maxXp)
+            {
+                AddLevel(1);
+                currentXp = currentXp - maxXp;
+                maxXp = 100 * Mathf.Pow(2, playerLevel-2);
+                if (currentXp < 0)
+                {
+                    currentXp = 0;
+                }
+            }
         }
-        PlayerPrefs.SetInt("CurrentXp", currentXp);
-        PlayerPrefs.SetInt("MaxXp", maxXp);
+        PlayerPrefs.SetFloat("CurrentXp", currentXp);
+        PlayerPrefs.SetFloat("MaxXp", maxXp);
         PlayerPrefs.Save();
     }
 

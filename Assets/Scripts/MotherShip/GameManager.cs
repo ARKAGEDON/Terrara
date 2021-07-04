@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     private PlayerInfo playerInfo;
+    bool Called = false; ///Bool pour éviter l'appel plusieurs fois des récompenses 
 
     // Start is called before the first frame update
     void Awake()
@@ -33,15 +34,36 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (EMotherShip.IsDead) //On vérifie que le vaisseau mère est bien mort puis si les boss le sont aussi, si oui alors gagné
+        if (EMotherShip.IsDead && !Called) //On vérifie que le vaisseau mère est bien mort puis si les boss le sont aussi, si oui alors gagné
         {
+            Called = true;
             playerInfo.Win();
             playerData.AddXp(500);
+            KillAll();
         }
 
-        if (PMotherShip.IsDead && playerInfo.IsDead) //On vérifie si le joueur et le vaisseau mère sont mort, si oui alors perdu
+        if (PMotherShip.IsDead && playerInfo.IsDead && !Called) //On vérifie si le joueur et le vaisseau mère sont mort, si oui alors perdu
         {
+            Called = true;
             playerInfo.Loose();
+            KillAll();
         }
+    }
+
+    /// <summary>
+    /// Fonction faites pour tuer toutes les entités Enemy (Vaisseau mère et mobs)
+    /// </summary>
+    private void KillAll()
+    {
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy"); //On récupère tout les mobs présent
+        foreach (var Enemy in Enemies)
+        {
+            if (Enemy != null) //On vérifie si ils sont toujours présent puis les tues
+                Destroy(Enemy);
+        }
+
+        GameObject EnemyMotherShip = GameObject.FindGameObjectWithTag("EnemyMotherShip");
+        if (EnemyMotherShip != null) //Si le vaisseau mère ennemis est encore là, alors on le tue
+            Destroy(EnemyMotherShip);
     }
 }

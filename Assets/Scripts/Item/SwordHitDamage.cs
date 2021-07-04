@@ -13,7 +13,7 @@ public class SwordHitDamage : MonoBehaviour
     [SerializeField] bool isAttacking = false;
 
     private void OnTriggerEnter(Collider other) {
-        if (!isAttacking && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieure à 3 et qu'on peut attaquer
+        if (!isAttacking && lSaber.IsOpen && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieure à 3 et qu'on peut attaquer
         {
             if (other.CompareTag("Enemy")) //On vérifie qu'on à bien touché un ennemis
             {
@@ -28,7 +28,7 @@ public class SwordHitDamage : MonoBehaviour
         }
     }
     private void OnTriggerStay(Collider other) {
-        if (!isAttacking && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieur à 3 et qu'on peut attaquer
+        if (!isAttacking && lSaber.IsOpen &&  saberRb.velocity.magnitude > 3) //Si la vitesse est supérieur à 3 et qu'on peut attaquer
         {
             if (other.CompareTag("Enemy")) //On vérifie qu'on a bien touché un ennemis
             {

@@ -17,7 +17,6 @@ public class PlayerInfo : MonoBehaviour
 
     [Tooltip("Bool pour vérifier si le joueur est mort ou non")]
     [SerializeField] private bool isDead = false;
-    private bool dontChase = false; //Bool pour éviter que le mob chasse le joueur
 
     [Tooltip("Liste des composants à désactiver à la mort du joueur")]
     [SerializeField] private Behaviour[] componentsToDisable;
@@ -40,7 +39,6 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private GameObject loosePanel;
 
     public bool IsDead { get => isDead; }
-    public bool DontChase { get => dontChase; }
     private void Start() {
         Respawn(); //On initialise le joueur à ses valeurs par défaut
         loosePanel.SetActive(false);
@@ -81,7 +79,6 @@ public class PlayerInfo : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        dontChase = true;
         DisableComponents();
         deathPanel.SetActive(true);
     }
@@ -93,7 +90,6 @@ public class PlayerInfo : MonoBehaviour
     {
         currentHp = maxHp;
         isDead = false;
-        dontChase = false;
         deathPanel.SetActive(false);
         UpdateLife();
         EnableComponents();
@@ -128,7 +124,6 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void Win()
     {
-        dontChase = true;
         DisableComponents();
         winPanel.SetActive(true);
     }
@@ -138,7 +133,6 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void Loose()
     {
-        dontChase = true;
         DisableComponents();
         loosePanel.SetActive(true);
     }

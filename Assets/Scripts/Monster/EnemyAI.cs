@@ -47,7 +47,8 @@ public class EnemyAI : EnemyInfo
         healthBar.fillAmount = percentageHP;
     }
 
-    private void Update() {
+    private void Update() 
+    {
         if (!IsDead)
         {
             if (!isFocusing) //On vérifie si le monstre à déjà focus un joueur ou non
@@ -68,11 +69,13 @@ public class EnemyAI : EnemyInfo
                     }
                 }
                 else
+                {
                     animator.SetFloat ("Speed", agent.velocity.magnitude/agent.speed,.1f,Time.deltaTime); //Ajout de la vitesse actuel du mob dans l'animator pour les animations de déplacement
                     if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Smash")) //Vérification si le joueur n'est pas en train d'attaquer pour éviter l'effet de slide
                     {
                         agent.SetDestination(target.transform.position);
                     }
+                }
             }
         }
     }
@@ -91,14 +94,11 @@ public class EnemyAI : EnemyInfo
 
         foreach (var player in players)
         {
-            if (!player.GetComponent<PlayerInfo>().DontChase)
+            float targetDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+            if (targetDistance < distance)
             {
-                float targetDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-                if (targetDistance < distance)
-                {
-                    distance = targetDistance;
-                    nearestTarget = player.transform;
-                }
+                distance = targetDistance;
+                nearestTarget = player.transform;
             }
         }
 
