@@ -36,7 +36,13 @@ Effet de son [allumer](https://freesound.org/people/joe93barlow/sounds/78674/)/[
 
 [Vaisseau mère ennemi](https://sketchfab.com/3d-models/ring-ship-b5020dcb894e4e4194232ec3c83cc834) par Lite
 
-[Epée Laser](https://sketchfab.com/3d-models/beatsaber-custom-saber-athenas-blade-blps-6deabdd6f25047b08c9248b8878610c6) par JonParrish
+[Epée Laser](https://sketchfab.com/3d-models/sci-fi-katana-d066ba619896484499ae312b9f2b1ad0) par Whatevvs
+
+[Assets de fx](https://assetstore.unity.com/packages/vfx/particles/simple-fx-cartoon-particles-67834) par Synty Studios
+
+[Assets de models 3d nature](https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153) par JustCreate
+
+[Assets de models 3d ville](https://assetstore.unity.com/packages/3d/environments/urban/cartoon-low-poly-city-pack-lite-166617) par JustCreate
 
 [Effet de contour shader](https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488) par Chris Nolet
 

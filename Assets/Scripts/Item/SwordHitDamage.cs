@@ -5,40 +5,42 @@ using TMPro;
 
 public class SwordHitDamage : MonoBehaviour
 {
-    [Tooltip("Référence vers le script light saber pour récupérer les dégats")]
-    [SerializeField] LightSaber lSaber;
+    [Tooltip("Référence vers le script sword pour récupérer les dégats")]
+    [SerializeField] Sword Saber;
+
     [Tooltip("Référence vers le rigidbody de l'épée pour vérifie la vitesse")]
     [SerializeField] Rigidbody saberRb;
+    
     [Tooltip("Bool pour éviter de mettre des dégats en continue si l'épée est dans le monstre")]
     [SerializeField] bool isAttacking = false;
 
     private void OnTriggerEnter(Collider other) {
-        if (!isAttacking && lSaber.IsOpen && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieure à 3 et qu'on peut attaquer
+        if (!isAttacking && Saber.IsOpen && saberRb.velocity.magnitude > 3) //Si la vitesse est supérieure à 3 et qu'on peut attaquer
         {
             if (other.CompareTag("Enemy")) //On vérifie qu'on à bien touché un ennemis
             {
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
-                other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
+                other.GetComponent<EnemyAI>().ApplyDamage(Saber.Damage);
             }
             else if (other.CompareTag("EnemyMotherShip")) //On vérifie qu'on a bien touché un ennemis
             {
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
-                other.GetComponent<EnemyMotherShip>().ApplyDamage(lSaber.Damage);
+                other.GetComponent<EnemyMotherShip>().ApplyDamage(Saber.Damage);
             }
         }
     }
     private void OnTriggerStay(Collider other) {
-        if (!isAttacking && lSaber.IsOpen &&  saberRb.velocity.magnitude > 3) //Si la vitesse est supérieur à 3 et qu'on peut attaquer
+        if (!isAttacking && Saber.IsOpen &&  saberRb.velocity.magnitude > 3) //Si la vitesse est supérieur à 3 et qu'on peut attaquer
         {
             if (other.CompareTag("Enemy")) //On vérifie qu'on a bien touché un ennemis
             {
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
-                other.GetComponent<EnemyAI>().ApplyDamage(lSaber.Damage);
+                other.GetComponent<EnemyAI>().ApplyDamage(Saber.Damage);
             }
             else if (other.CompareTag("EnemyMotherShip")) //On vérifie qu'on a bien touché un ennemis
             {
                 isAttacking = true; //On met la bool à true et tant que l'épée est pas sortis on applique plus de dégats
-                other.GetComponent<EnemyMotherShip>().ApplyDamage(lSaber.Damage);
+                other.GetComponent<EnemyMotherShip>().ApplyDamage(Saber.Damage);
             }
         }
     }
