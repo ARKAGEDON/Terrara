@@ -134,7 +134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636817922080765881}
   m_LocalRotation: {x: -0.02490675, y: -0.993467, z: 0.078504495, w: 0.078994356}
-  m_LocalPosition: {x: 0, y: 1.4, z: 1}
+  m_LocalPosition: {x: -0.15, y: 3.19, z: -0.65}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 1242320901946693141}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 1636817921805005299}
   - component: {fileID: 1636817921805005298}
   m_Layer: 8
-  m_Name: Sword 1
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 1906796067175992495}
   m_LocalRotation: {x: -0.2337197, y: 0.607332, z: 0.31654748, w: 0.6901599}
   m_LocalPosition: {x: 1.346, y: 1.102, z: -31.548}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
   - {fileID: 1513212942958698686}
   - {fileID: 751202244708111696}
