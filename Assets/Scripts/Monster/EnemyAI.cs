@@ -39,12 +39,22 @@ public class EnemyAI : EnemyInfo
     [SerializeField] private Image healthBar;
 
     float nextAttackTime;
-    bool isFocusing;
+
+    [Header("Special case")]
+
+    [Tooltip("A activer si vous voulez que le mob ne focus que le joueur le plus proche dès son spawn")]
+    [SerializeField] private bool isFocusing;
 
     private void Start() {
         agent = gameObject.GetComponent<NavMeshAgent>();
         float percentageHP = ((CurrentHp * 100) / MaxHp) / 100;
         healthBar.fillAmount = percentageHP;
+
+        //Si on veut que le mob focus directement un joueur
+        if (isFocusing == true)
+        {
+            target = CheckNearestPlayer();
+        }
     }
 
     private void Update() 
@@ -56,9 +66,9 @@ public class EnemyAI : EnemyInfo
                 target = CheckNearest();
             }
 
-            float distance = Vector3.Distance(gameObject.transform.position, target.transform.position); //Calcul de la distance entre la cible et le monstre
-            if (distance <= chaseRange)
+            if (target != null)
             {
+                float distance = Vector3.Distance(gameObject.transform.position, target.transform.position); //Calcul de la distance entre la cible et le monstre
                 //On vérifie que le joueur est dans la zone d'attaque du joueur et le cooldown passé sinon on avance
                 if (distance <= attackRange)
                 {
@@ -81,16 +91,47 @@ public class EnemyAI : EnemyInfo
     }
     
     /// <summary>
+    /// Fonction pour chercher l'entité la plus proche
+    /// </summary>
+    /// <returns>Retourne le transform de l'entité la plus proche</returns>
+    private Transform CheckNearest()
+    {
+        float distance = Mathf.Infinity; //Float pour trouvé l'entité la plus proche (la distance entre cet entité et le mob)
+        Transform nearestTarget = null; //Entité la plus proche
+        players = GameObject.FindGameObjectsWithTag("Player");
+        //Ajout de notre vaisseau mère
+        GameObject playerMotherShip = GameObject.FindGameObjectWithTag("PlayerMotherShip");
+
+        //L'ennemi va d'abord se diriger vers notre vaisseau mère si ce dernier n'est pas mort
+        if (!playerMotherShip.GetComponent<PlayerMotherShip>().IsDead)
+        {
+            float motherShipDistance = Vector3.Distance(gameObject.transform.position, playerMotherShip.transform.position); //Distance entre le mob et notre vaisseau mère
+            distance = motherShipDistance; //Distance la plus petite trouvée pour l'instant est celle entre le vaisseau mère et le mob
+            nearestTarget = playerMotherShip.transform; //Notre vaisseau mère deviens la cible du mobs
+        }
+
+        foreach (var player in players)
+        {
+            float targetDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+            if (targetDistance < distance && targetDistance < chaseRange) //Si le joueur se trouve dans la zone d'attaque du mobs et que la distance entre le mob et le joueur est plus petite que celle déjà trouvée
+            {
+                distance = targetDistance; //Alors la distance mini est celle entre le mob et ce joueur
+                nearestTarget = player.transform; //Ce joueur deviens la cible
+            }
+        }
+
+        return nearestTarget;
+    }
+
+    /// <summary>
     /// Fonction pour chercher le joueur le plus proche
     /// </summary>
     /// <returns>Retourne le transform du joueur le plus proche</returns>
-    private Transform CheckNearest()
+    private Transform CheckNearestPlayer()
     {
         float distance = Mathf.Infinity;
         Transform nearestTarget = null; //Joueur le plus proche
         players = GameObject.FindGameObjectsWithTag("Player");
-        //Ajout du vaisseau ennemis
-        GameObject playerMotherShip = GameObject.FindGameObjectWithTag("PlayerMotherShip");
 
         foreach (var player in players)
         {
@@ -99,17 +140,6 @@ public class EnemyAI : EnemyInfo
             {
                 distance = targetDistance;
                 nearestTarget = player.transform;
-            }
-        }
-
-        if (!playerMotherShip.GetComponent<PlayerMotherShip>().IsDead)
-        {
-            //On vérifie si le vaisseau mère est plus proche que le joueur ou non, si oui on attaque le vaisseau
-            float motherShipDistance = Vector3.Distance(gameObject.transform.position, playerMotherShip.transform.position);
-            if (motherShipDistance < distance)
-            {
-                distance = motherShipDistance;
-                nearestTarget = playerMotherShip.transform;
             }
         }
 
@@ -122,18 +152,33 @@ public class EnemyAI : EnemyInfo
     /// <param name="_damage">Dégats à appliquer au monstre</param>
     public override void ApplyDamage(float _damage)
     {
-        target = CheckNearest();
+        //Le mob cible focus celui qui lui a mis des dégats
+        target = CheckNearestPlayer();
+        isFocusing = true;
+
         IEnumerator coroutine = ShowDamage(_damage);
         StartCoroutine(coroutine);
         base.ApplyDamage(_damage);
     }
 
     /// <summary>
-    /// Fonction appelé par l'animation d'attaque, on applique les dégats au joueur, augmente le cooldown et désactive l'animation
+    /// Fonction appelé par l'animation d'attaque, on applique les dégats à la cible, augmente le cooldown et désactive l'animation
     /// </summary>
     public void Attack()
     {
-        target.GetComponent<PlayerInfo>().ApplyDamage(Damage);
+        if (target.CompareTag("Player")) //Si la cible est un joueur
+        {
+            target.GetComponent<PlayerInfo>().ApplyDamage(Damage);
+        }
+        else if (target.CompareTag("PlayerMotherShip")) //Si la cible est notre vaisseau mère
+        {
+            target.GetComponent<PlayerMotherShip>().ApplyDamage(Damage);
+        }
+        else //Euh.. t'es quoi?
+        {
+            Debug.Log("Wtf, what are u bro?");
+        }
+
         nextAttackTime = Time.time + attackCooldown; //Mise en place du cooldown
         animator.SetBool("Attack", false);
     }

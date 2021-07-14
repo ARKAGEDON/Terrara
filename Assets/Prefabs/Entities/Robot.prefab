@@ -316,6 +316,7 @@ MonoBehaviour:
   attackCooldown: 5
   damageText: {fileID: 6524305101450880605}
   healthBar: {fileID: 8073516061322155760}
+  isFocusing: 0
 --- !u!1 &1317820537617910417
 GameObject:
   m_ObjectHideFlags: 0

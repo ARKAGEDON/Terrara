@@ -11,10 +11,14 @@ public class TutorialWaypoint : MonoBehaviour
     [Tooltip("Référence vers le texte à modifié dans l'ui du joueur")]
     public TextMeshProUGUI playerMessageText;
     
-    private void OnTriggerEnter(Collider other) { //Lorsque le joueur entre en contact on afficher le message du waypoint
-        playerMessageText.text = message;
+    private void OnTriggerEnter(Collider other) //Lorsque le joueur entre en contact on afficher le message du waypoint
+    {
+        if (other.CompareTag("Player"))
+            playerMessageText.text = message;
     }
-    private void OnTriggerExit(Collider other) { //Lorsque le joueur sort de la zone on désactive le message
-        playerMessageText.text = "";
+    private void OnTriggerExit(Collider other)//Lorsque le joueur sort de la zone on désactive le message
+    {
+        if (other.CompareTag("Player"))
+            playerMessageText.text = "";
     }
 }

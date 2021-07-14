@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4145306190911870324}
   m_Layer: 0
-  m_Name: PlayerRespawnPoint (1)
+  m_Name: PlayerRespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 370271225830899053}
   - component: {fileID: 6933671531733058348}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10000 / 10000
+  m_text: 250/250
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28057a761d370ee3a8f38cf096357cdc, type: 2}
   m_sharedMaterial: {fileID: -626956744865571289, guid: 28057a761d370ee3a8f38cf096357cdc,
