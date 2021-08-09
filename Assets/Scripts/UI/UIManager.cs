@@ -17,6 +17,12 @@ public class UIManager : MonoBehaviour
     [Tooltip("Liste des différents panel, ordre à suivre: 0 = Register, 1 = Menu, 2 = Settings")]
     [SerializeField] private GameObject[] Panels;
 
+    [Tooltip("GameObject parent des boutons de choix de jeu (Multi ou solo)")]
+    [SerializeField] private GameObject buttonParent;
+
+    [Tooltip("GameObject parent de la liste des campagnes")]
+    [SerializeField] private GameObject campaignList;
+
     [Header("PlayerInfo UI")]
 
     [Tooltip("Référence vers le texte de niveau du joueur")]
@@ -32,7 +38,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerinputField;
 
     [Header("Campaign UI")]
+
+    [Tooltip("Liste des différentes campagnes disponibles en solo")]
     [SerializeField] private GameObject[] Campaigns; //Liste des différentes campagnes disponibles
+
 
 
     // Start is called before the first frame update
@@ -64,6 +73,8 @@ public class UIManager : MonoBehaviour
             playerNameText.text = playerData.PlayerName;
             playerXpText.text = playerData.CurrentXp.ToString() + "/" + playerData.MaxXp.ToString();
             Campaigns[0].SetActive(true);
+            buttonParent.SetActive(true);
+            campaignList.SetActive(false);
             return;
         }
         Panels[0].SetActive(true);
@@ -152,6 +163,24 @@ public class UIManager : MonoBehaviour
     public void play(string _scene)
     {
         SceneManager.LoadScene(_scene);
+    }
+
+
+    /// <summary>
+    /// Fonction à mettre dans le bouton solo, elle affichera les campagne solo disponible pour le joueur
+    /// </summary>
+    public void PlaySolo()
+    {
+        buttonParent.SetActive(false);
+        campaignList.SetActive(true);
+    }
+
+    /// <summary>
+    /// Fonction à mettre dans le bouton multi, elle connectera le joueur au lobby multi
+    /// </summary>
+    public void PlayMulti()
+    {
+        SceneManager.LoadScene("Offline");
     }
 
     /// <summary>
