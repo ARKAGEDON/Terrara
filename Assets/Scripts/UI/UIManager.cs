@@ -118,7 +118,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void HideCampaigns()
     {
-        for (var i = 0; i < Panels.Length; i++)
+        for (var i = 0; i < Campaigns.Length; i++)
         {
             Campaigns[i].SetActive(false);
         }

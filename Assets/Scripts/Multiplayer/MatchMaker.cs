@@ -109,13 +109,13 @@ namespace MirrorBasics {
             return false;
         }
 
-        public void BeginGame (string _matchID) {
+        public void BeginGame (string _matchID, string map) {
             for (int i = 0; i < matches.Count; i++) {
                 if (matches[i].matchID == _matchID) {
                     matches[i].inMatch = true;
                     foreach (var player in matches[i].players) {
                         Player _player = player.GetComponent<Player> ();
-                        _player.StartGame ();
+                        _player.StartGame (map);
                     }
                     break;
                 }

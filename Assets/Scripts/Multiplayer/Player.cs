@@ -162,25 +162,26 @@ namespace MirrorBasics {
             BEGIN MATCH
         */
 
-        public void BeginGame () {
-            CmdBeginGame ();
+        //On appelle le début du match avec la map souhaité
+        public void BeginGame (string map) {
+            CmdBeginGame (map);
         }
 
         [Command]
-        void CmdBeginGame () {
-            MatchMaker.instance.BeginGame (matchID);
+        void CmdBeginGame (string map) {
+            MatchMaker.instance.BeginGame (matchID, map);
             Debug.Log ($"<color=red>Game Beginning</color>");
         }
 
-        public void StartGame () { //Server
-            TargetBeginGame ();
+        public void StartGame (string map) { //Server
+            TargetBeginGame (map);
         }
 
         [TargetRpc]
-        void TargetBeginGame () {
+        void TargetBeginGame (string map) {
             Debug.Log ($"MatchID: {matchID} | Beginning");
             //Additively load game scene
-            SceneManager.LoadScene (2, LoadSceneMode.Additive);
+            SceneManager.LoadScene (map, LoadSceneMode.Additive);
         }
 
     }

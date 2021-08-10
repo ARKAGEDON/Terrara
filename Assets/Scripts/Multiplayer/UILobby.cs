@@ -21,7 +21,7 @@ namespace MirrorBasics {
         [SerializeField] Transform UIPlayerParent;
         [SerializeField] GameObject UIPlayerPrefab;
         [SerializeField] Text matchIDText;
-        [SerializeField] GameObject beginGameButton;
+        [SerializeField] GameObject[] beginGamesButtons;
 
         GameObject localPlayerLobbyUI;
 
@@ -48,7 +48,8 @@ namespace MirrorBasics {
                 if (localPlayerLobbyUI != null) Destroy (localPlayerLobbyUI);
                 localPlayerLobbyUI = SpawnPlayerUIPrefab (Player.localPlayer);
                 matchIDText.text = matchID;
-                beginGameButton.SetActive (true);
+                HidePlayButtons();
+                beginGamesButtons[0].SetActive (true);
             } else {
                 lobbySelectables.ForEach (x => x.interactable = true);
             }
@@ -78,7 +79,7 @@ namespace MirrorBasics {
 
             lobbyCanvas.enabled = false;
             lobbySelectables.ForEach (x => x.interactable = true);
-            beginGameButton.SetActive (false);
+            HidePlayButtons();
         }
 
         public GameObject SpawnPlayerUIPrefab (Player player) {
@@ -89,8 +90,8 @@ namespace MirrorBasics {
             return newUIPlayer;
         }
 
-        public void BeginGame () {
-            Player.localPlayer.BeginGame ();
+        public void BeginGame (string map) {
+            Player.localPlayer.BeginGame (map);
         }
 
         public void SearchGame () {
@@ -128,5 +129,48 @@ namespace MirrorBasics {
             searchCanvas.enabled = false;
         }
 
+
+        /// <summary>
+        /// Fonction pour cacher toutes les campagnes
+        /// </summary>
+        private void HidePlayButtons()
+        {
+            for (var i = 0; i < beginGamesButtons.Length; i++)
+            {
+                beginGamesButtons[i].SetActive(false);
+            }
+        }
+
+        /// <summary>
+        /// Fonction pour changer de campagne avec la flèche de droite
+        /// </summary>
+        /// <param name="_currentCampaignId">Id de la campagne, commence par 0 comme dans les listes</param>
+        public void NextCampaign(int _currentCampaignId)
+        {
+            if (_currentCampaignId == beginGamesButtons.Length - 1 ) //On vérifie que c'est pas la dernière campagne de la liste
+            {
+                HidePlayButtons();
+                beginGamesButtons[0].SetActive(true);
+                return;
+            }
+            HidePlayButtons(); //Sinon on active la campagne suivante
+            beginGamesButtons[_currentCampaignId + 1].SetActive(true); 
+        }
+
+        /// <summary>
+        /// Fonction pour changer de campagne avec la flèche gauche
+        /// </summary>
+        /// <param name="_currentCampaignId">Id de la campagne, commence par 0 comme dans les listes</param>
+        public void PreviousCampaign(int _currentCampaignId)
+        {
+            if (_currentCampaignId == 0) //On vérifie si c'est pas la première campagne
+            {
+                HidePlayButtons();
+                beginGamesButtons[beginGamesButtons.Length -1].SetActive(true);
+                return;
+            }
+            HidePlayButtons();
+            beginGamesButtons[_currentCampaignId - 1].SetActive(true);
+        }
     }
 }

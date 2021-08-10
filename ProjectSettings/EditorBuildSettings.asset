@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: e160c16cfb157730a915687cbcae0b73
   - enabled: 1
+    path: Assets/Scenes/Offline.unity
+    guid: ec97495294cb99a4fadad81c1aa760f1
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 7033eeeb3efdd4c4b96fa852067df1c9
+  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: ac69da273784f149ebcb079eadd0158b
+  - enabled: 1
+    path: Assets/Scenes/FirstLevel.unity
+    guid: 8c627334bdc4656d0a6e9156522befb0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a764630c2c4c669bb962f54840aae086,
       type: 2}
