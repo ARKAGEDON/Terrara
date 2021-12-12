@@ -9,6 +9,7 @@ TagManager:
   - KeyboardManager
   - PlayerMotherShip
   - EnemyMotherShip
+  - Object
   layers:
   - Default
   - TransparentFX

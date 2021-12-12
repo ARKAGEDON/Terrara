@@ -45,3 +45,16 @@ The following packages were added:
   com.unity.ugui@1.0.0
 The following packages were updated:
   com.unity.render-pipelines.universal from version 7.5.2 to 7.5.3
+
+=== Tue Sep 14 23:02:46 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ide.visualstudio@2.0.11
+The following packages were updated:
+  com.unity.collab-proxy from version 1.2.16 to 1.8.0
+  com.unity.ide.rider from version 1.1.4 to 1.2.1
+  com.unity.test-framework from version 1.1.24 to 1.1.27
+  com.unity.xr.windowsmr from version 2.6.1 to 2.8.0
