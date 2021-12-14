@@ -16,6 +16,9 @@ public class Gun : MonoBehaviour
     [Tooltip("Type de l'arme")]
     public WeaponType weaponType = WeaponType.Basic;
 
+    [Tooltip("Nombre de balle par tir")]
+    public int amountOfProjectiles = 1;
+
     [Tooltip("Dégats de l'arme")]
     public float damage = 10f;
 
@@ -75,6 +78,9 @@ public class Gun : MonoBehaviour
                     case WeaponType.Pistol:
                         BasicShoot(damage * (loadedTime / 2.5f));
                         break;
+                    case WeaponType.Pump:
+                        MultiShoot(damage * (loadedTime / 2.5f));
+                        break;
                 }
             }
             else if (loadedTime > 5f)
@@ -83,10 +89,13 @@ public class Gun : MonoBehaviour
                 {
                     //Si l'arme est un simple flingue
                     case WeaponType.Basic:
-                        BasicShoot(damage * 2);
+                        BasicShoot(damage * 2f);
                         break;
                     case WeaponType.Pistol:
-                        UltimPistolShoot(damage * 2);
+                        UltimPistolShoot(damage * 2f);
+                        break;
+                    case WeaponType.Pump:
+                        UltimPumpShoot(damage * 2f);
                         break;
                 }
             }
@@ -97,6 +106,7 @@ public class Gun : MonoBehaviour
     /// <summary>
     /// Fonction pour le tir basique
     /// </summary>
+    /// <param name="_damage">Dégats de chaque balle</param>
     public void BasicShoot(float _damage)
     {
         if (timeCooldown < Time.time) //Vérification que le cooldown est passé
@@ -111,8 +121,36 @@ public class Gun : MonoBehaviour
     }
 
     /// <summary>
+    /// Fonction pour le tir multiple
+    /// </summary>
+    /// <param name="_damage">Dégats de chaque balle</param>
+    public void MultiShoot(float _damage)
+    {
+        if (timeCooldown < Time.time) //Vérification que le cooldown est passé
+        {
+            timeCooldown = Time.time + shootCooldown;
+            for (int i = 0; i < amountOfProjectiles; i++)
+            {
+                Vector3 direction = barrel.transform.forward; // your initial aim.
+                Vector3 spread = barrel.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
+                spread += barrel.transform.right * Random.Range(-1f, 1f); // add random left or right
+
+                // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
+                // Since the radius is always 1 then (after normalization), we need another random call. 
+                direction += spread.normalized * Random.Range(0f, 0.2f);
+                GameObject tmp_bullet = Instantiate(bullets[0],barrel);
+                tmp_bullet.GetComponent<Rigidbody>().velocity = direction * speed;
+                tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
+            }
+
+            audioSource.PlayOneShot(audioClip);
+        } 
+    }
+
+    /// <summary>
     /// Fonction pour le tir ultime du pistolet
     /// </summary>
+    /// <param name="_damage">Dégats de chaque balle</param>
     public void UltimPistolShoot(float _damage)
     {
         if (timeCooldown < Time.time) //Vérification que le cooldown est passé
@@ -125,6 +163,34 @@ public class Gun : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
         }
     }
+
+    /// <summary>
+    /// Fonction pour le tir ultime du pompe
+    /// </summary>
+    /// <param name="_damage">Dégats de chaque balle</param>
+    public void UltimPumpShoot(float _damage)
+    {
+        if (timeCooldown < Time.time) //Vérification que le cooldown est passé
+        {
+            timeCooldown = Time.time + shootCooldown;
+            for (int i = 0; i < amountOfProjectiles; i++)
+            {
+                Vector3 direction = barrel.transform.forward; // your initial aim.
+                Vector3 spread = barrel.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
+                spread += barrel.transform.right * Random.Range(-1f, 1f); // add random left or right
+
+                // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
+                // Since the radius is always 1 then (after normalization), we need another random call. 
+                direction += spread.normalized * Random.Range(0f, 0.2f);
+                GameObject tmp_bullet = Instantiate(bullets[0],barrel);
+                tmp_bullet.GetComponent<Rigidbody>().velocity = direction * speed;
+                tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
+            }
+
+            audioSource.PlayOneShot(audioClip);
+        }
+    }
+
     /// <summary>
     /// Fonction pour ajouter le propriétaire de l'arme
     /// </summary>
