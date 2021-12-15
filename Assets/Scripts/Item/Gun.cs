@@ -16,8 +16,11 @@ public class Gun : MonoBehaviour
     [Tooltip("Type de l'arme")]
     public WeaponType weaponType = WeaponType.Basic;
 
-    [Tooltip("Nombre de balle par tir")]
+    [Tooltip("Nombre de balle par tir (pour les pompes etc)")]
     public int amountOfProjectiles = 1;
+
+    [Tooltip("Nombre de ricochet/collat par tir")]
+    public int amountOfCollat = 1;
 
     [Tooltip("Dégats de l'arme")]
     public float damage = 10f;
@@ -29,7 +32,7 @@ public class Gun : MonoBehaviour
     public float shootCooldown = 5f;
     private float timeCooldown;
 
-    [Tooltip("Liste des balles des armes, (0 balle classique, 1 balle ultime Pistolet)")]
+    [Tooltip("Liste des balles des armes, (0 balle classique, 1 balle ultime)")]
     public GameObject[] bullets;
 
     [Header("Info audio")]
@@ -40,10 +43,11 @@ public class Gun : MonoBehaviour
     [Tooltip("Son du tir")]
     public AudioClip audioClip;
 
-    private GameObject _owner;
     
     private float loadingTime = 0;
     private float loadedTime = 0;
+
+    private List<GameObject> Enemies;
 
     /// <summary>
     /// Fonction pour commencer le chargement de l'arme
@@ -62,23 +66,22 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void StopLoading()
     {
-        if (loadingTime != 0)
+        if (loadingTime != 0) //Vérification si le joueur à un peu chargé l'arme
         {
-            loadedTime = Time.time - loadingTime;
+            loadedTime = Time.time - loadingTime; //Loadedtime vaut le temps qui est chargé
             loadingTime = 0;
             
             if (loadedTime <= 5f)
             {
                 switch (weaponType)
                 {
-                    //Si l'arme est un simple flingue
-                    case WeaponType.Basic:
-                        BasicShoot(damage * (loadedTime / 2.5f));
+                    case WeaponType.Basic: //Si l'arme est un simple flingue
+                        BasicShoot(damage * (loadedTime / 2.5f),0);
                         break;
-                    case WeaponType.Pistol:
-                        BasicShoot(damage * (loadedTime / 2.5f));
+                    case WeaponType.Pistol: //Si l'arme est un pistolet
+                        BasicShoot(damage * (loadedTime / 2.5f),0);
                         break;
-                    case WeaponType.Pump:
+                    case WeaponType.Pump: //Si l'arme est un pompe
                         MultiShoot(damage * (loadedTime / 2.5f));
                         break;
                 }
@@ -87,14 +90,13 @@ public class Gun : MonoBehaviour
             {
                 switch (weaponType)
                 {
-                    //Si l'arme est un simple flingue
-                    case WeaponType.Basic:
-                        BasicShoot(damage * 2f);
+                    case WeaponType.Basic: //Si l'arme est un simple flingue
+                        BasicShoot(damage * 2f,0);
                         break;
-                    case WeaponType.Pistol:
-                        UltimPistolShoot(damage * 2f);
+                    case WeaponType.Pistol: //Si l'arme est un pistolet
+                        BasicShoot(damage * 2f,1);
                         break;
-                    case WeaponType.Pump:
+                    case WeaponType.Pump: //Si l'arme est un pompe
                         UltimPumpShoot(damage * 2f);
                         break;
                 }
@@ -107,14 +109,17 @@ public class Gun : MonoBehaviour
     /// Fonction pour le tir basique
     /// </summary>
     /// <param name="_damage">Dégats de chaque balle</param>
-    public void BasicShoot(float _damage)
+    /// <param name="bulletId">Identifiant de la balle à initialiser</param>
+    public void BasicShoot(float _damage, int bulletId)
     {
         if (timeCooldown < Time.time) //Vérification que le cooldown est passé
         {
-            timeCooldown = Time.time + shootCooldown;
+            timeCooldown = Time.time + shootCooldown; //Ajout du cooldown pour éviter le spam
+
+            //Initialisation de la balle et son
             GameObject tmp_bullet = Instantiate(bullets[0],barrel);
             tmp_bullet.GetComponent<Rigidbody>().velocity = barrel.transform.forward * speed;
-            tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
+            tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage,amountOfCollat);
 
             audioSource.PlayOneShot(audioClip);
         }
@@ -128,19 +133,22 @@ public class Gun : MonoBehaviour
     {
         if (timeCooldown < Time.time) //Vérification que le cooldown est passé
         {
-            timeCooldown = Time.time + shootCooldown;
+            timeCooldown = Time.time + shootCooldown; //Ajout du cooldown
+
+            //Boucle pour tout les projectiles
             for (int i = 0; i < amountOfProjectiles; i++)
             {
-                Vector3 direction = barrel.transform.forward; // your initial aim.
-                Vector3 spread = barrel.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
-                spread += barrel.transform.right * Random.Range(-1f, 1f); // add random left or right
+                Vector3 direction = barrel.transform.forward; // Récupération de la visée initiale
+                Vector3 spread = barrel.transform.up * Random.Range(-1f, 1f); // Ajout de spread random en haut et en bas
+                spread += barrel.transform.right * Random.Range(-1f, 1f); //Ajout de spread random en gauche et à droite
 
-                // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
-                // Since the radius is always 1 then (after normalization), we need another random call. 
+                // Utilisation du normalized pour arrondir le spread car l'ajout random va créer un speard carré, puis re randomisation du radius
                 direction += spread.normalized * Random.Range(0f, 0.2f);
+
+                //Initialisation de la balle
                 GameObject tmp_bullet = Instantiate(bullets[0],barrel);
                 tmp_bullet.GetComponent<Rigidbody>().velocity = direction * speed;
-                tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
+                tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage,amountOfCollat);
             }
 
             audioSource.PlayOneShot(audioClip);
@@ -148,24 +156,7 @@ public class Gun : MonoBehaviour
     }
 
     /// <summary>
-    /// Fonction pour le tir ultime du pistolet
-    /// </summary>
-    /// <param name="_damage">Dégats de chaque balle</param>
-    public void UltimPistolShoot(float _damage)
-    {
-        if (timeCooldown < Time.time) //Vérification que le cooldown est passé
-        {
-            timeCooldown = Time.time + shootCooldown;
-            GameObject tmp_bullet = Instantiate(bullets[1],barrel);
-            tmp_bullet.GetComponent<Rigidbody>().velocity = barrel.transform.forward * speed;
-            tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
-
-            audioSource.PlayOneShot(audioClip);
-        }
-    }
-
-    /// <summary>
-    /// Fonction pour le tir ultime du pompe
+    /// Fonction pour le tir ultime du pompe (Attention la balle ultime du pompe doit être un missile (voir classe missile))
     /// </summary>
     /// <param name="_damage">Dégats de chaque balle</param>
     public void UltimPumpShoot(float _damage)
@@ -175,16 +166,13 @@ public class Gun : MonoBehaviour
             timeCooldown = Time.time + shootCooldown;
             for (int i = 0; i < amountOfProjectiles; i++)
             {
-                Vector3 direction = barrel.transform.forward; // your initial aim.
-                Vector3 spread = barrel.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
-                spread += barrel.transform.right * Random.Range(-1f, 1f); // add random left or right
+                Transform target = CheckNearestMob();
 
-                // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
-                // Since the radius is always 1 then (after normalization), we need another random call. 
-                direction += spread.normalized * Random.Range(0f, 0.2f);
-                GameObject tmp_bullet = Instantiate(bullets[0],barrel);
-                tmp_bullet.GetComponent<Rigidbody>().velocity = direction * speed;
-                tmp_bullet.GetComponent<GunHitDamage>().InitialiseDamage(_damage);
+                if (target != null)
+                {
+                    GameObject go = Instantiate(bullets[1], barrel.position, barrel.rotation);
+                    go.GetComponent<Missle>().SetValues(target, _damage);
+                }
             }
 
             audioSource.PlayOneShot(audioClip);
@@ -192,19 +180,27 @@ public class Gun : MonoBehaviour
     }
 
     /// <summary>
-    /// Fonction pour ajouter le propriétaire de l'arme
+    /// Fonction pour chercher le mob le plus proche
     /// </summary>
-    public void AddOwner()
+    /// <returns>Retourne le transform du mob le plus proche</returns>
+    private Transform CheckNearestMob()
     {
-        _owner = GameObject.FindGameObjectWithTag("Player");
-    }
+        float distance = Mathf.Infinity;
+        GameObject nearestTarget = null; //Mob le plus proche
+        Enemies =  new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
 
-    /// <summary>
-    /// Fonction pour enlever le propriétaire de l'arme
-    /// </summary>
-    public void RemoveOwner()
-    {
-        _owner = null;
+        foreach (var Enemy in Enemies)
+        {
+            float targetDistance = Vector3.Distance(gameObject.transform.position, Enemy.transform.position);
+            if (targetDistance < distance)
+            {
+                distance = targetDistance;
+                nearestTarget = Enemy;
+            }
+        }
+        Enemies.Remove(nearestTarget);
+
+        return nearestTarget.transform;
     }
 
 }

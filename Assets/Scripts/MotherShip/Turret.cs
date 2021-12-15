@@ -27,7 +27,7 @@ public class Turret : MonoBehaviour
     [Tooltip("Transform de la cible des tourelles")]
     [SerializeField] private Transform target;
 
-    float nextAttackTime;
+    private float nextAttackTime;
     
 
     GameObject[] Enemies;
