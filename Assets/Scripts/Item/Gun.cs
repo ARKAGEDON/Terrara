@@ -84,6 +84,9 @@ public class Gun : MonoBehaviour
                     case WeaponType.Pump: //Si l'arme est un pompe
                         MultiShoot(damage * (loadedTime / 2.5f));
                         break;
+                    case WeaponType.Sniper: //Si l'arme est un sniper
+                        BasicShoot(damage * (loadedTime / 2.5f),0);
+                        break;
                 }
             }
             else if (loadedTime > 5f)
@@ -94,10 +97,13 @@ public class Gun : MonoBehaviour
                         BasicShoot(damage * 2f,0);
                         break;
                     case WeaponType.Pistol: //Si l'arme est un pistolet
-                        BasicShoot(damage * 2f,1);
+                        BasicShoot(damage * 2f,5);
                         break;
                     case WeaponType.Pump: //Si l'arme est un pompe
                         UltimPumpShoot(damage * 2f);
+                        break;
+                    case WeaponType.Sniper: //Si l'arme est un sniper
+                        BasicShoot(damage * 100f,0);
                         break;
                 }
             }
