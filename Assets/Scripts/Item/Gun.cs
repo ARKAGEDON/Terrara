@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public enum WeaponType {Basic, Pistol, Pump, Sniper};
@@ -43,6 +44,12 @@ public class Gun : MonoBehaviour
     [Tooltip("Son du tir")]
     public AudioClip audioClip;
 
+    [Header("UI de l'arme")]
+    [Tooltip("UI de chargement du tir")]
+    public Image chargingImage;
+    [Tooltip("UI de rechargement entre chaque tir")]
+    public Image cooldownImage;
+
     
     private float loadingTime = 0;
     private float loadedTime = 0;
@@ -58,6 +65,11 @@ public class Gun : MonoBehaviour
         {
             loadingTime = Time.time;
             //Afficher l'animation de chargement de l'arme;
+            chargingImage.fillAmount = (loadingTime-Time.time)/5f;
+        }
+        else
+        {
+            cooldownImage.fillAmount = 1 - (timeCooldown-Time.time);
         }
     }
 
@@ -70,8 +82,9 @@ public class Gun : MonoBehaviour
         {
             loadedTime = Time.time - loadingTime; //Loadedtime vaut le temps qui est chargé
             loadingTime = 0;
+            chargingImage.fillAmount =  loadedTime/5f;
             
-            if (loadedTime <= 5f)
+            if (loadedTime <= 5f && loadedTime > 0)
             {
                 switch (weaponType)
                 {
@@ -111,6 +124,9 @@ public class Gun : MonoBehaviour
         }
     }
 
+    private void Update() {
+        cooldownImage.fillAmount = 1 - (timeCooldown-Time.time);
+    }
     /// <summary>
     /// Fonction pour le tir basique
     /// </summary>

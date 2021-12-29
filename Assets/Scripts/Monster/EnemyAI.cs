@@ -76,6 +76,7 @@ public class EnemyAI : EnemyInfo
                     if (Time.time > nextAttackTime)
                     {
                         animator.SetBool("Attack", true);
+                        Attack();
                     }
                 }
                 else

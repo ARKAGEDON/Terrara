@@ -30,7 +30,39 @@ public class GunHitDamage : MonoBehaviour
             else
                 Destroy(gameObject);
         }
+        else if (other.CompareTag("EnemyMotherShip"))
+        {
+            other.GetComponent<EnemyMotherShip>().ApplyDamage(damage);
+            if (collat > 1)
+                collat--; //Si on touche un ennemis et qu'on peut encore faire des collatéraux alors on retire juste un au nombre de collatéral restants
+            else
+                Destroy(gameObject);
+        }
         else if (!other.CompareTag("Object")) //Sinon on la détruit (toucher un mur etc..)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerStay(Collider other) 
+    {
+        //Collision de la balle
+        if (other.CompareTag("Enemy")) //Si elle touche un mob alors dégats
+        {
+            other.GetComponent<EnemyAI>().ApplyDamage(damage);
+            if (collat > 1)
+                collat--; //Si on touche un ennemis et qu'on peut encore faire des collatéraux alors on retire juste un au nombre de collatéral restants
+            else
+                Destroy(gameObject);
+        }
+        else if (other.CompareTag("EnemyMotherShip"))
+        {
+            other.GetComponent<EnemyMotherShip>().ApplyDamage(damage);
+            if (collat > 1)
+                collat--; //Si on touche un ennemis et qu'on peut encore faire des collatéraux alors on retire juste un au nombre de collatéral restants
+            else
+                Destroy(gameObject);
+        }
+        else if (!other.CompareTag("Object") && !other.CompareTag("Player")) //Sinon on la détruit (toucher un mur etc..)
         {
             Destroy(gameObject);
         }

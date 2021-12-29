@@ -3457,6 +3457,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1739033449}
+    - target: {fileID: 6588961784027378536, guid: 3ee76fb7739d2659ba93dc7fd1866ae1,
+        type: 3}
+      propertyPath: m_TrackingOriginMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6588961784027378537, guid: 3ee76fb7739d2659ba93dc7fd1866ae1,
         type: 3}
       propertyPath: m_Name
@@ -3516,6 +3521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588961784330725731, guid: 3ee76fb7739d2659ba93dc7fd1866ae1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6588961784486054257, guid: 3ee76fb7739d2659ba93dc7fd1866ae1,
         type: 3}

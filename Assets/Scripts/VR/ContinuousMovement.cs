@@ -47,14 +47,14 @@ public class ContinuousMovement : MonoBehaviour
         character.Move(direction * Time.fixedDeltaTime * speed);
 
         //Gravité du joueur
-        bool isGrounded = CheckIfGround();
+        /*bool isGrounded = CheckIfGround();
         if (isGrounded)
             fallingSpeed = 0;
         else
             fallingSpeed += gravity * Time.fixedDeltaTime;
 
         fallingSpeed += gravity * Time.fixedDeltaTime;
-        character.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);
+        character.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);*/
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class ContinuousMovement : MonoBehaviour
     {
         //tell us if on ground
         Vector3 rayStart = transform.TransformPoint(character.center);
-        float rayLength = character.center.y + 0.01f;
+        float rayLength = character.center.y + 0.25f;
         bool hasHit = Physics.SphereCast(rayStart, character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
         return hasHit;
     }
